@@ -14,14 +14,14 @@ struct FeedView: View {
     var body: some View {
         NavigationStack {
             List(viewModel.stocks) { stock in
-                NavigationLink(value: stock) {
+                NavigationLink(value: stock.symbol) {
                     StockRowView(stock: stock)
                 }
             }
             .listStyle(.plain)
             .navigationTitle("Live Prices")
-            .navigationDestination(for: Stock.self) { stock in
-                StockDetailView(stock: stock)
+            .navigationDestination(for: String.self) { symbol in
+                StockDetailView(symbol: symbol)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
